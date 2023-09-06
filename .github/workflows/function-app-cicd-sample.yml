@@ -22,8 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-    - name: 'Checkout GitHub Action'
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
     - name: Setup DotNet ${{ env.DOTNET_VERSION }}
       uses: actions/setup-dotnet@v3
@@ -53,8 +52,24 @@ jobs:
     - name: Upload artifacts (Function App2)
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
-        path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP2_NAME }}
+        name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
+        path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP1_NAME }}
+
+  deploy-functionapp1:
+    name: Deploy Function App1
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
+          path: artifacts/${{ env.AZURE_FUNCTIONAPP1_NAME }}
+      - name: 'Deploy: Function App1'
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
+          package: artifacts/${{ env.AZURE_FUNCTIONAPP1_NAME }}
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP1_PUBLISH_PROFILE }}
           
   deploy-functionapp2:
     name: Deploy Function App2
@@ -64,10 +79,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
-          path: artifacts
-      - name: 'Run Azure Functions Action'
+          path: artifacts/${{ env.AZURE_FUNCTIONAPP2_NAME }}
+      - name: 'Deploy: Function App2'
         uses: Azure/functions-action@v1
-        id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
           package: artifacts/${{ env.AZURE_FUNCTIONAPP2_NAME }}
