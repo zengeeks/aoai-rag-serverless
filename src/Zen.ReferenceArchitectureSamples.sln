@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDataUploader", "CosmosDataUploader\CosmosDataUploader.csproj", "{D6ADA596-2434-4424-BC83-181FB0C898A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{399F2B58-69CD-4F52-AC52-9EA007283BB3}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CognitiveSearchSamples", "CognitiveSearchSamples\CognitiveSearchSamples.csproj", "{64770276-D09D-4A0E-A5DA-6648C34C541F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6ADA596-2434-4424-BC83-181FB0C898A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6ADA596-2434-4424-BC83-181FB0C898A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6ADA596-2434-4424-BC83-181FB0C898A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6ADA596-2434-4424-BC83-181FB0C898A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64770276-D09D-4A0E-A5DA-6648C34C541F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64770276-D09D-4A0E-A5DA-6648C34C541F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64770276-D09D-4A0E-A5DA-6648C34C541F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64770276-D09D-4A0E-A5DA-6648C34C541F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E69576C5-EF42-41FD-B6AE-3403E0EF08B2}
+	EndGlobalSection
+EndGlobal
