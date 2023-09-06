@@ -55,38 +55,19 @@ jobs:
       with:
         name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
         path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP2_NAME }}
-
-  deploy-function1:
-    name: Deploy Function App1
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Download artifact (Function App1)
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
-          path: artifacts
           
-      - name: Deploy (Function App1)
-        uses: Azure/functions-action@v1
-        with:
-          app-name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
-          package: artifacts/${{ env.AZURE_FUNCTIONAPP1_NAME }}
-          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP1_PUBLISH_PROFILE }}
-          
-  deploy-function2:
+  deploy-functionapp2:
     name: Deploy Function App2
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - name: Download artifact (Function App2)
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
           path: artifacts
-          
-      - name: Deploy (Function App2)
+      - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
+        id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
           package: artifacts/${{ env.AZURE_FUNCTIONAPP2_NAME }}
