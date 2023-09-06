@@ -45,13 +45,13 @@ jobs:
         popd
         
     - name: Upload artifacts (Function App1)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
         path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP1_NAME }}
 
     - name: Upload artifacts (Function App2)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
         path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP2_NAME }}
@@ -62,16 +62,16 @@ jobs:
     needs: [build]
     steps:
       - name: Download artifact (Function App1)
-        uses: actions/download-artifact@v2
-        id: download
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
+          path: artifacts
           
       - name: Deploy (Function App1)
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
-          package: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
+          package: artifacts/${{ env.AZURE_FUNCTIONAPP1_NAME }}
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP1_PUBLISH_PROFILE }}
           
   deploy-function2:
@@ -80,14 +80,14 @@ jobs:
     needs: [build]
     steps:
       - name: Download artifact (Function App2)
-        uses: actions/download-artifact@v2
-        id: download
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
+          path: artifacts
           
       - name: Deploy (Function App2)
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
-          package: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
+          package: artifacts/${{ env.AZURE_FUNCTIONAPP2_NAME }}
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP2_PUBLISH_PROFILE }}
