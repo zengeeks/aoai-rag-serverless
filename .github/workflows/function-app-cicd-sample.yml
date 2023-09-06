@@ -52,8 +52,8 @@ jobs:
     - name: Upload artifacts (Function App2)
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.AZURE_FUNCTIONAPP1_NAME }}
-        path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP1_NAME }}
+        name: ${{ env.AZURE_FUNCTIONAPP2_NAME }}
+        path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP2_NAME }}
 
   deploy-functionapp1:
     name: Deploy Function App1
