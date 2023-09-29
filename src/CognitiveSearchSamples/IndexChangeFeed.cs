@@ -30,13 +30,13 @@ public class IndexChangeFeed
             LeaseContainerName = "leases")]IReadOnlyList<AzureInfo> input,
         ILogger log)
     {
-        var documentsToUpload = new List<AzureIndexDocument>();
+        var documentsToUpload = new List<IndexToUpload>();
 
         foreach (var azureInfo in input)
         {
             var contentVector = await GenerateEmbeddingsAsync(azureInfo.Content);
 
-            documentsToUpload.Add(new AzureIndexDocument
+            documentsToUpload.Add(new IndexToUpload
             {
                 Id = azureInfo.Id,
                 Category = azureInfo.Category,

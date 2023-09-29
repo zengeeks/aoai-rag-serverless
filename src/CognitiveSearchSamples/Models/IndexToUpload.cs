@@ -5,7 +5,7 @@ namespace CognitiveSearchSamples.Models;
 /// <summary>
 /// Cognitive Search の Index 登録用スキーマ
 /// </summary>
-public class AzureIndexDocument
+public class IndexToUpload
 {
     public string Id { get; set; }
     public string Category { get; set; }
